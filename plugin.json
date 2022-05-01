@@ -1,0 +1,18 @@
+{
+    "name": "Newsletter Manager",
+    "url": "https://github.com/yakkomajuri/posthog-newsletter-plugin",
+    "description": "Manage a newsletter using PostHog.",
+    "main": "index.js",
+    "config": [
+        {
+            "key": "newsletterSecret",
+            "hint": "Used for triggering a newsletter and processing unsubscribe requests.",
+            "name": "Newsletter secret",
+            "type": "string",
+            "required": true
+        }
+    ],
+    "publicJobs": {
+      "List all subscribers": {}
+    }
+}

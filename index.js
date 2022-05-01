@@ -35,6 +35,11 @@ async function addNewSubscriber(event, { storage }) {
     }
 
     const subscribersList = await getCurrentSubscribersList(storage)
+    
+    if (subscribersList.includes(newSubscriberEmail)){
+        console.log(`'${newSubscriberEmail}' is already subscribed.`)
+        return
+    }
     console.log(`Adding ${newSubscriberEmail} to the subscribers list.`)
     subscribersList.push(newSubscriberEmail)
     await storage.set(NEWSLETTER_SUBSCRIBERS_STORAGE_KEY, JSON.stringify(subscribersList))

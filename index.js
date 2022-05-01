@@ -52,7 +52,7 @@ async function removeSubscriber(event, { storage, config }) {
         return
     }
 
-    const subscribersList = await getCurrentSubscribersList(storage)
+    let subscribersList = await getCurrentSubscribersList(storage)
     subscribersList = subscribersList.filter(email => email !== emailToRemove)
     await storage.set(NEWSLETTER_SUBSCRIBERS_STORAGE_KEY, JSON.stringify(subscribersList))
     console.log(`Successfully removed ${emailToRemove} from the subscribers list.`)

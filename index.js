@@ -30,7 +30,7 @@ async function addNewSubscriber(event, { storage }) {
     }
     
     if (!isEmail(newSubscriberEmail)) {
-        console.log(`Skipped adding ${newSubscriberEmail} to the newsletter as it's not an email.`)
+        console.log(`Skipped adding '${newSubscriberEmail}' to the newsletter as it's not an email.`)
         return   
     }
 

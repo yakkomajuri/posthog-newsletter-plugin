@@ -28,6 +28,11 @@ async function addNewSubscriber(event, { storage }) {
         console.log(`No email found to add to the subscribers list.`)
         return
     }
+    
+    if (!isEmail(newSubscriberEmail)) {
+        console.log(`Skipped adding ${newSubscriberEmail} to the newsletter as it's not an email.`)
+        return   
+    }
 
     const subscribersList = await getCurrentSubscribersList(storage)
     console.log(`Adding ${newSubscriberEmail} to the subscribers list.`)
@@ -79,4 +84,9 @@ async function getCurrentSubscribersList(storage) {
     const storedSubscribers = await storage.get(NEWSLETTER_SUBSCRIBERS_STORAGE_KEY, '[]')
     const subscribersList = JSON.parse(storedSubscribers)
     return subscribersList
+}
+
+function isEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(String(email).toLowerCase())
 }
